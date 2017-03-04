@@ -57,8 +57,8 @@
 
 	var Main = __webpack_require__(233);
 	var Weather = __webpack_require__(235);
-	var About = __webpack_require__(236);
-	var Examples = __webpack_require__(237);
+	var About = __webpack_require__(238);
+	var Examples = __webpack_require__(239);
 
 	ReactDOM.render(React.createElement(
 		Router,
@@ -26581,7 +26581,8 @@
 	var React = __webpack_require__(1);
 
 	var _require = __webpack_require__(178),
-	    Link = _require.Link;
+	    Link = _require.Link,
+	    IndexLink = _require.IndexLink;
 
 	var Nav = React.createClass({
 		displayName: 'Nav',
@@ -26596,18 +26597,18 @@
 					'Nav Component'
 				),
 				React.createElement(
-					Link,
-					{ to: '/' },
+					IndexLink,
+					{ to: '/', activeClassName: 'active', activeStyle: { fontWeight: 'bold' } },
 					'Get Weather'
 				),
 				React.createElement(
 					Link,
-					{ to: '/about' },
+					{ to: '/about', activeClassName: 'active', activeStyle: { fontWeight: 'bold' } },
 					'About the App'
 				),
 				React.createElement(
 					Link,
-					{ to: '/examples' },
+					{ to: '/examples', activeClassName: 'active', activeStyle: { fontWeight: 'bold' } },
 					'Example Work'
 				)
 			);
@@ -26623,15 +26624,23 @@
 	'use strict';
 
 	var React = __webpack_require__(1);
+	var Form = __webpack_require__(236);
+	var Message = __webpack_require__(237);
 
 	var Weather = React.createClass({
 		displayName: 'Weather',
 
 		render: function render() {
 			return React.createElement(
-				'h3',
+				'div',
 				null,
-				'Weather Component'
+				React.createElement(
+					'h3',
+					null,
+					'Weather Component'
+				),
+				React.createElement(Form, null),
+				React.createElement(Message, null)
 			);
 		}
 	});
@@ -26640,6 +26649,110 @@
 
 /***/ },
 /* 236 */
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+
+	var React = __webpack_require__(1);
+
+	var Form = React.createClass({
+		displayName: "Form",
+
+		render: function render() {
+			return React.createElement(
+				"div",
+				null,
+				React.createElement(
+					"form",
+					null,
+					React.createElement("input", { type: "text" }),
+					React.createElement(
+						"button",
+						null,
+						"Tell me the Weather!"
+					)
+				)
+			);
+		}
+	});
+
+	// var FormLocation = React.createClass({
+	// 	onFormSubmit: function(e){
+	// 		e.preventDefault();
+
+	// 	    var location = this.refs.location.value;
+
+	// 	    if (location.length > 0) {
+	// 	      this.refs.location.value = '';
+	// 	      this.props.onNewLocation(location);
+	// 	    }
+	// 	},
+	// 	render: function(){
+	// 		return (
+	// 	      <div>
+	// 	      	<form onSubmit={this.onFormSubmit}>
+	// 	        	<input type="text" ref="location"/>
+	// 	        	<button>Set location</button>
+	// 	      	</form>
+	// 	      </div>
+	//     	);
+	// 	}
+	// })
+
+
+	// var DisplayForm = React.createClass({
+	// 	getDefaultProps: function(){
+	// 		return {
+	// 			location: 'Nowhere'
+	// 		};
+	// 	},
+	// 	getInitialState: function() {
+	// 		return {
+	// 			location: this.props.location
+	// 		}
+	// 	},
+	// 	handleNewLocation: function(name){
+	// 		this.setState({
+	// 			location: location
+	// 		});
+	// 	},
+	// 	render: function(){
+	// 		var location = this.state.location;
+	// 		return(
+	// 			<div>
+	// 				<Form location={location}/>
+	// 				<FormLocation onNewLocation={this.handleNewLocation}/>
+	// 			</div>
+	// 		);
+	// 	}	
+	// });
+
+	module.exports = Form;
+
+/***/ },
+/* 237 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	var React = __webpack_require__(1);
+
+	var Message = React.createClass({
+		displayName: 'Message',
+
+		render: function render() {
+			return React.createElement(
+				'h3',
+				null,
+				'Behold! The Weather!'
+			);
+		}
+	});
+
+	module.exports = Message;
+
+/***/ },
+/* 238 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -26661,7 +26774,7 @@
 	module.exports = About;
 
 /***/ },
-/* 237 */
+/* 239 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
