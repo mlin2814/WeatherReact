@@ -1,7 +1,7 @@
 var React = require('react');
 
-var Message = React.createClass({	
-	render: function () {
+var WeatherMessage = React.createClass({
+  render: function () {
     var {temp, location} = this.props;
 
     return (
@@ -10,4 +10,4 @@ var Message = React.createClass({
   }
 });
 
-module.exports = Message;
+module.exports = WeatherMessage;
