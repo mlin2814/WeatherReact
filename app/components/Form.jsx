@@ -1,6 +1,5 @@
 var React = require('react');
 
-
 var Form = React.createClass({
 	onFormSubmit: function(e){
 		e.preventDefault();
@@ -20,7 +19,7 @@ var Form = React.createClass({
 	        		<button>Tell me the Weather!</button>
 	      		</form>
 			</div>
-		)
+		);
 	}
 });
 

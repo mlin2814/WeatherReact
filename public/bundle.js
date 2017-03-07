@@ -26633,27 +26633,45 @@
 
 		getInitialState: function getInitialState() {
 			return {
-				location: 'Boston',
-				temp: 50
+				isLoading: false
 			};
 		},
 		handleSearch: function handleSearch(location) {
 			var that = this;
 
+			this.setState({ isLoading: true });
+
 			openWeatherMap.getTemp(location).then(function (temp) {
 				that.setState({
 					location: location,
-					temp: temp
+					temp: temp,
+					isLoading: false
 				});
 			}, function (errorMessage) {
+				that.setState({
+					isLoading: false
+				});
 				alert(errorMessage);
 			});
 		},
 		render: function render() {
 			var _state = this.state,
+			    isLoading = _state.isLoading,
 			    temp = _state.temp,
 			    location = _state.location;
 
+
+			function renderMessage() {
+				if (isLoading) {
+					return React.createElement(
+						'h3',
+						null,
+						'Collecting Weather Information'
+					);
+				} else if (temp && location) {
+					return React.createElement(Message, { temp: temp, location: location });
+				}
+			}
 
 			return React.createElement(
 				'div',
@@ -26664,7 +26682,7 @@
 					'Weather Component'
 				),
 				React.createElement(Form, { onSearch: this.handleSearch }),
-				React.createElement(Message, { temp: temp, location: location })
+				renderMessage()
 			);
 		}
 	});
@@ -26802,7 +26820,7 @@
 
 	var axios = __webpack_require__(239);
 
-	var OPEN_WEATHER_MAP_URL = 'api.openweathermap.org/data/2.5/weather?&units=imperial&appid=5f58db0e4ad04143b4e102603285e194';
+	var OPEN_WEATHER_MAP_URL = 'http://api.openweathermap.org/data/2.5/weather?appid=5f58db0e4ad04143b4e102603285e194&units=imperial';
 
 	module.exports = {
 		getTemp: function getTemp(location) {
