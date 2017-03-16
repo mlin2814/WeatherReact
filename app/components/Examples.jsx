@@ -6,6 +6,7 @@ var Examples = (props) => {
 			<h3>Examples</h3>
 			<p>Examples page</p>
 		</div>
+			
 	);
 };
 
